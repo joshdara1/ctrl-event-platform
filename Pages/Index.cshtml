@@ -1,0 +1,185 @@
+﻿@page
+@model IndexModel
+
+@{
+    ViewData["Title"] = "CTRL";
+}
+
+<!-- HERO SECTION -->
+
+<section class="ctrl-hero-section text-white text-center">
+
+    <video autoplay muted loop playsinline class="ctrl-hero-video">
+        <source src="~/videos/hero.mp4" type="video/mp4" />
+    </video>
+
+    <div class="ctrl-hero-overlay"></div>
+
+    <div class="container">
+
+        <p class="ctrl-hero-kicker">
+            NOTTINGHAM NIGHTLIFE / EVENTS / DJS
+        </p>
+
+        <h1 class="display-4 fw-bold mb-3">
+            Find Events. Discover DJs. CTRL the Night.
+        </h1>
+
+        <p class="lead mb-4">
+            Browse upcoming events, explore DJ profiles, and discover nightlife.
+        </p>
+
+        <form method="get" action="/Events/Index" class="ctrl-search-form mx-auto">
+
+            <div class="input-group input-group-lg">
+
+                <input type="text"
+                       name="SearchTerm"
+                       class="form-control"
+                       placeholder="Search events, venues, DJs..." />
+
+                <button class="btn btn-light">
+                    Search
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</section>
+
+
+<!-- FEATURED EVENTS -->
+
+<section class="py-5">
+
+<div class="container">
+
+<div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2">
+
+<div>
+<h2 class="fw-bold mb-1">Featured Events</h2>
+
+<p class="text-muted mb-0">
+View Our Current Events, This Page Updates Regularly
+</p>
+
+</div>
+
+<a asp-page="/Events/Index" class="btn btn-dark">
+See All Events
+</a>
+
+</div>
+
+
+@if (Model.FeaturedEvents == null || Model.FeaturedEvents.Count == 0)
+{
+    <div class="alert alert-info">
+        No featured events have been added yet.
+    </div>
+}
+else
+{
+    <div class="row g-4">
+
+    @foreach (var item in Model.FeaturedEvents)
+    {
+        <div class="col-md-6 col-lg-4">
+
+        <a asp-page="/Events/Details"
+           asp-route-id="@item.Id"
+           class="text-decoration-none text-dark">
+
+            <div class="card shadow-sm border-0 h-100">
+
+                <img src="@(string.IsNullOrWhiteSpace(item.ImageUrl)
+                    ? "https://via.placeholder.com/600x300?text=CTRL+Event"
+                    : item.ImageUrl)"
+                     class="card-img-top"
+                     alt="@item.Title"
+                     style="height:220px; object-fit:cover;" />
+
+                <div class="card-body">
+
+                    <span class="badge bg-dark mb-2">
+                        @item.Category
+                    </span>
+
+                    <h5 class="card-title fw-bold">
+                        @item.Title
+                    </h5>
+
+                    @if (item.DJ != null)
+                    {
+                        <p class="text-muted small mb-2">
+                            DJ: @item.DJ.Name
+                        </p>
+                    }
+
+                    <p class="text-muted mb-2">
+                        @item.Venue • @item.Date.ToString("dd MMM yyyy")
+                    </p>
+
+                    <p class="card-text mb-0">
+                        @item.Description
+                    </p>
+
+                </div>
+
+            </div>
+
+        </a>
+
+        </div>
+    }
+
+    </div>
+}
+
+</div>
+
+</section>
+
+
+
+<!-- ABOUT SECTION -->
+
+<section class="py-5 bg-light">
+
+<div class="container">
+
+<div class="row align-items-center">
+
+<div class="col-lg-6">
+
+<h2 class="fw-bold">
+A Platform Built For Nightlife
+</h2>
+
+<p>
+CTRL helps users discover events, explore DJ profiles,
+and experience nightlife more easily.
+</p>
+
+<a asp-page="/Events/Index" class="btn btn-dark">
+Browse Events
+</a>
+
+</div>
+
+
+<div class="col-lg-6">
+
+<img src="https://burst.shopifycdn.com/photos/audience-members-hold-up-mobile-phones-filming-a-concert.jpg?width=4460&height=4460&exif=0&iptc=0&c=entertainment&quality=premium"
+class="img-fluid rounded shadow">
+
+</div>
+
+</div>
+
+</div>
+
+</section>

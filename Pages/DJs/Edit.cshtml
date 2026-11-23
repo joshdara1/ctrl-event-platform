@@ -1,0 +1,62 @@
+@page
+@model CTRL.Pages.DJs.EditModel
+
+@{
+    ViewData["Title"] = "Edit DJ";
+}
+
+<h1 class="fw-bold mb-4">Edit DJ Profile</h1>
+
+<div class="row">
+    <div class="col-md-8">
+        <form method="post">
+            <input type="hidden" asp-for="DJ.Id" />
+            <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+            <div class="mb-3">
+                <label asp-for="DJ.Name" class="form-label"></label>
+                <input asp-for="DJ.Name" class="form-control" />
+                <span asp-validation-for="DJ.Name" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="DJ.Genre" class="form-label"></label>
+                <input asp-for="DJ.Genre" class="form-control" />
+                <span asp-validation-for="DJ.Genre" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="DJ.Bio" class="form-label"></label>
+                <textarea asp-for="DJ.Bio" class="form-control" rows="4"></textarea>
+                <span asp-validation-for="DJ.Bio" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="DJ.Instagram" class="form-label"></label>
+                <input asp-for="DJ.Instagram" class="form-control" />
+                <span asp-validation-for="DJ.Instagram" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="DJ.SoundCloud" class="form-label"></label>
+                <input asp-for="DJ.SoundCloud" class="form-control" />
+                <span asp-validation-for="DJ.SoundCloud" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="DJ.ImageUrl" class="form-label">Profile Image URL</label>
+                <input asp-for="DJ.ImageUrl" class="form-control" />
+                <span asp-validation-for="DJ.ImageUrl" class="text-danger"></span>
+            </div>
+
+            <div class="d-flex gap-2">
+                <button type="submit" class="btn btn-dark">Save Changes</button>
+                <a asp-page="Index" class="btn btn-outline-secondary">Back to DJs</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

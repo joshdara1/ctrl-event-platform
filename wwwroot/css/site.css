@@ -1,0 +1,177 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+.ctrl-hero-section{
+min-height:70vh;
+display:flex;
+align-items:center;
+background:
+linear-gradient(rgba(0,0,0,0.55),rgba(0,0,0,0.75)),
+url("https://images.unsplash.com/photo-1571266028243-d220c9ffef6f?auto=format&fit=crop&w=1600&q=80");
+background-size:cover;
+background-position:center;
+}
+
+.ctrl-hero-overlay{
+position:absolute;
+inset:0;
+}
+
+.ctrl-hero-kicker{
+letter-spacing:0.2rem;
+font-size:0.85rem;
+font-weight:600;
+margin-bottom:1rem;
+}
+
+.ctrl-search-form{
+max-width:700px;
+}
+
+.ctrl-search-input{
+border:none;
+padding:1rem;
+}
+
+.ctrl-feature-card img{
+height:240px;
+object-fit:cover;
+}
+
+.ctrl-feature-card{
+transition:0.2s;
+}
+
+.ctrl-feature-card:hover{
+transform:translateY(-6px);
+box-shadow:0 1rem 2rem rgba(0,0,0,0.15);
+}
+
+.ctrl-banner-section{
+background:#f8f9fa;
+}
+
+.ctrl-hero-section{
+background:
+linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)),
+url("https://images.unsplash.com/photo-1571266028243-d220c9ffef6f?auto=format&fit=crop&w=1600&q=80");
+
+background-size:cover;
+background-position:center;
+
+padding:120px 20px;
+}
+
+.ctrl-search-form{
+max-width:600px;
+}
+.ctrl-hero-section {
+    position: relative;
+    min-height: 75vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.ctrl-hero-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    transform: translate(-50%, -50%);
+    object-fit: cover;
+    z-index: 0;
+}
+
+.ctrl-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 1;
+}
+
+.ctrl-hero-section .container {
+    position: relative;
+    z-index: 2;
+}
+
+.ctrl-search-form {
+    max-width: 650px;
+}
+
+
+/* CTRL navbar */
+.navbar,
+.navbar.bg-white,
+.navbar-light {
+  background-color: #111111 !important;
+  border-bottom: 1px solid rgba(255,255,255,.08) !important;
+}
+
+.navbar .navbar-brand,
+.navbar .nav-link,
+.navbar .navbar-text {
+  color: #ffffff !important;
+}
+
+.navbar .nav-link:hover,
+.navbar .navbar-brand:hover {
+  opacity: .85;
+}
+
+/* Identity manage layout helpers */
+.ctrl-manage-shell {
+  max-width: 1100px;
+}
+
+.ctrl-manage-nav .nav-link {
+  border-radius: .75rem;
+  margin-bottom: .5rem;
+}
+
+.ctrl-manage-nav .nav-link.active {
+  background: #111111;
+  color: #fff !important;
+}
+
+.ctrl-manage-card {
+  border-radius: 1rem;
+}
+.ctrl-manage-shell {
+  max-width: 1100px;
+}
+
+.ctrl-manage-nav .nav-link {
+  border-radius: .75rem;
+  margin-bottom: .5rem;
+}
+
+.ctrl-manage-nav .nav-link.active {
+  background: #111111;
+  color: #fff !important;
+}
+
+.ctrl-manage-card {
+  border-radius: 1rem;
+}

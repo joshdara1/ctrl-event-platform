@@ -1,0 +1,97 @@
+@page
+@model CTRL.Pages.DJs.IndexModel
+
+@{
+    ViewData["Title"] = "DJs";
+    var canManageDjs = User.Identity != null && User.Identity.IsAuthenticated && (User.IsInRole("Admin") || User.IsInRole("DJ"));
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h1 class="fw-bold">DJ Profiles</h1>
+        <p class="text-muted mb-0">Discover and manage DJs on CTRL</p>
+    </div>
+
+    @if (canManageDjs)
+    {
+        <a asp-page="Create" class="btn btn-dark">+ Add DJ</a>
+    }
+</div>
+
+@if (Model.DJ == null || Model.DJ.Count == 0)
+{
+    <div class="alert alert-info">
+        No DJs have been added yet.
+    </div>
+}
+else
+{
+    <div class="row g-4">
+        @foreach (var item in Model.DJ)
+        {
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100 shadow-sm border-0 position-relative ctrl-hover-card">
+
+                    <img src="@(string.IsNullOrWhiteSpace(item.ImageUrl) ? "https://via.placeholder.com/600x300?text=CTRL+DJ" : item.ImageUrl)"
+                         class="card-img-top"
+                         alt="@item.Name"
+                         style="height: 260px; object-fit: cover;" />
+
+                    <div class="card-body">
+                        <span class="badge bg-dark mb-2">@item.Genre</span>
+
+                        <h5 class="card-title fw-bold">@item.Name</h5>
+
+                        <p class="card-text text-muted mb-3">
+                            @item.Bio
+                        </p>
+
+                        @if (!string.IsNullOrWhiteSpace(item.Instagram))
+                        {
+                            <p class="mb-1 position-relative" style="z-index:2;">
+                                <strong>Instagram:</strong>
+                                <a href="@item.Instagram" target="_blank" rel="noopener noreferrer">@item.Instagram</a>
+                            </p>
+                        }
+
+                        @if (!string.IsNullOrWhiteSpace(item.SoundCloud))
+                        {
+                            <p class="mb-3 position-relative" style="z-index:2;">
+                                <strong>SoundCloud:</strong>
+                                <a href="@item.SoundCloud" target="_blank" rel="noopener noreferrer">@item.SoundCloud</a>
+                            </p>
+                        }
+
+                        <a asp-page="./Details"
+                           asp-route-id="@item.Id"
+                           class="stretched-link"
+                           aria-label="View details for @item.Name"></a>
+
+                        <div class="d-flex gap-2 flex-wrap position-relative" style="z-index:2;">
+                            <a asp-page="./Details"
+                               asp-route-id="@item.Id"
+                               class="btn btn-outline-dark btn-sm">
+                                Details
+                            </a>
+
+                            @if (canManageDjs)
+                            {
+                                <a asp-page="./Edit"
+                                   asp-route-id="@item.Id"
+                                   class="btn btn-outline-primary btn-sm">
+                                    Edit
+                                </a>
+
+                                <a asp-page="./Delete"
+                                   asp-route-id="@item.Id"
+                                   class="btn btn-outline-danger btn-sm">
+                                    Delete
+                                </a>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}

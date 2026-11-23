@@ -1,0 +1,35 @@
+@page "{id:int?}"
+@model CTRL.Pages.Events.TicketModel
+
+@{
+    ViewData["Title"] = "Ticket Confirmation";
+}
+
+<div class="container py-5">
+    <div class="card shadow-lg border-0 mx-auto" style="max-width: 700px;">
+        <div class="card-body p-5">
+
+            <h1 class="fw-bold mb-4">Ticket Confirmation</h1>
+
+            <div class="alert alert-success">
+                You have successfully registered for this event.
+            </div>
+
+            <p><strong>Name:</strong> @Model.CurrentUser.Email</p>
+            <p><strong>Event:</strong> @Model.Event.Title</p>
+            <p><strong>Date:</strong> @Model.Event.Date.ToString("dd MMM yyyy")</p>
+            <p><strong>Venue:</strong> @Model.Event.Venue</p>
+            <p><strong>Status:</strong> Registered</p>
+
+            @if (Model.Event.DJ != null)
+            {
+                <p><strong>DJ:</strong> @Model.Event.DJ.Name</p>
+            }
+
+            <a asp-page="/Events/Details" asp-route-id="@Model.Event.Id" class="btn btn-dark mt-3">
+                Back to Event
+            </a>
+
+        </div>
+    </div>
+</div>
